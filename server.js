@@ -1,4 +1,3 @@
-const path = require('path');
 require('dotenv').config({ path: './.env' });
 const express = require('express');
 const http = require('http');
@@ -109,26 +108,17 @@ const TasksSchemaa = new mongoose.Schema({
       {timestamps:true});
       const Rate = mongoose.model('Rate',Ratee);
 
-const allowedOrigins = ["http://localhost:4200", "https://cook-x95d.onrender.com"];
-
 app.use(cors({
-  origin: allowedOrigins,
-  methods: ["GET", "POST"],
-  credentials: true
+  origin: '*',
+  methods: ['GET', 'POST']
 }));
-app.use(express.static(path.join(__dirname, 'dist/cooking')));
 
-// Catch-all for Angular routing
-app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/cooking/index.html'));
-});
 const io = new Server(server, {
   cors: {
-    origin: allowedOrigins,
-    methods: ["GET", "POST"],
-    credentials: true
+    origin: '*',
+    methods: ['GET', 'POST']
   },
-  transports: ["polling", "websocket"],
+  transports: ['websocket', 'polling'],
   pingTimeout: 200000,
   pingInterval: 30000
 });

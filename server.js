@@ -111,17 +111,18 @@ const TasksSchemaa = new mongoose.Schema({
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST'],
-  credentials: false
+  credentials: true
 }));
 
 const io = new Server(server, {
   cors: {
-    origin: "*",   
-    methods: ["GET", "POST"]
+    origin: '*',
+    methods: ['GET', 'POST'],
+    credentials: true
   },
-  transports: ["websocket", "polling"],
-  pingTimeout: 20000,
-  pingInterval: 25000
+  transports: ['websocket', 'polling'],
+  pingTimeout: 200000,
+  pingInterval: 30000
 });
 
 

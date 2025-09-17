@@ -115,7 +115,10 @@ app.use(cors({
   methods: ["GET", "POST"],
   credentials: true
 }));
-
+app.use(express.static('dist/cooking'));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/cooking/index.html'));
+});
 const io = new Server(server, {
   cors: {
     origin: allowedOrigins,

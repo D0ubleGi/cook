@@ -114,21 +114,22 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: allowedOrigins,
-  methods: ['GET', 'POST'],
-  credentials: true
+  origin: 'http://localhost:4200',  // Angular dev server
+  methods: ['GET','POST'],
+  credentials: true                // now works because origin is specific
 }));
 
 const io = new Server(server, {
   cors: {
-    origin: allowedOrigins,
-    methods: ['GET', 'POST'],
+    origin: 'http://localhost:4200',
+    methods: ['GET','POST'],
     credentials: true
   },
   transports: ['websocket', 'polling'],
-  pingTimeout: 200000,
-  pingInterval: 30000
+  pingTimeout: 20000,
+  pingInterval: 25000
 });
+
 
 io.on('connection', (socket) => {
   console.log('🟢 New user connected:', socket.id);

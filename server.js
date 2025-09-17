@@ -108,7 +108,7 @@ const TasksSchemaa = new mongoose.Schema({
       {timestamps:true});
       const Rate = mongoose.model('Rate',Ratee);
 
-const allowedOrigins = ["http://localhost:4200"];
+const allowedOrigins = ["http://localhost:4200", "https://cook-x95d.onrender.com"];
 
 app.use(cors({
   origin: allowedOrigins,

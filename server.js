@@ -116,8 +116,10 @@ app.use(cors({
   methods: ["GET", "POST"],
   credentials: true
 }));
-app.use(express.static('dist/cooking'));
-app.get('/*', (req, res) => {
+app.use(express.static(path.join(__dirname, 'dist/cooking')));
+
+// Catch-all for Angular routing
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/cooking/index.html'));
 });
 const io = new Server(server, {

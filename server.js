@@ -116,14 +116,14 @@ app.use(cors({
 
 const io = new Server(server, {
   cors: {
-    origin: ['http://localhost:4200', 'https://cook-x95d.onrender.com'],
-    methods: ['GET', 'POST'],
-    credentials: true
+    origin: "*",   
+    methods: ["GET", "POST"]
   },
-  transports: ['websocket', 'polling'],
+  transports: ["websocket", "polling"],
   pingTimeout: 20000,
   pingInterval: 25000
 });
+
 
 io.on('connection', (socket) => {
   console.log('🟢 New user connected:', socket.id);

@@ -1,3 +1,4 @@
+const path = require('path');
 require('dotenv').config({ path: './.env' });
 const express = require('express');
 const http = require('http');
@@ -116,7 +117,7 @@ app.use(cors({
   credentials: true
 }));
 app.use(express.static('dist/cooking'));
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/cooking/index.html'));
 });
 const io = new Server(server, {

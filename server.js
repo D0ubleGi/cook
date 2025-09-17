@@ -108,21 +108,27 @@ const TasksSchemaa = new mongoose.Schema({
       {timestamps:true});
       const Rate = mongoose.model('Rate',Ratee);
 
+const allowedOrigins = [
+  'http://localhost:4200',       // local Angular dev
+  'https://your-angular-app.com' // deployed Angular
+];
+
 app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST']
+  origin: allowedOrigins,
+  methods: ['GET', 'POST'],
+  credentials: true
 }));
 
 const io = new Server(server, {
   cors: {
-    origin: '*',
-    methods: ['GET', 'POST']
+    origin: allowedOrigins,
+    methods: ['GET', 'POST'],
+    credentials: true
   },
   transports: ['websocket', 'polling'],
   pingTimeout: 200000,
   pingInterval: 30000
 });
-
 
 io.on('connection', (socket) => {
   console.log('🟢 New user connected:', socket.id);
